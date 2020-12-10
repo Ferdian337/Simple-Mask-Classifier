@@ -1,37 +1,40 @@
-<html>
-    <head>
-        <title>Image Classification</title>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script>
-            const Url = 'http://127.0.0.1:5000/predict'
-            
-            window.addEventListener('load', function() {
-            document.querySelector('input[type="file"]').addEventListener('change', function() {
-                if (this.files && this.files[0]) {
-                    var img = document.getElementById('imageData');  
-                    img.src = URL.createObjectURL(this.files[0]); 
+<!DOCTYPE html>
+<html lang="en">
 
-                    var data = new FormData()
-                    data.append('file', this.files[0])
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mask Type Detection</title>
 
-                    fetch(Url, {
-                        method: 'POST',
-                        body: data
-                    })
-                    .then(response => response.json())
-                    .then(response => document.getElementById('classText').innerHTML = response.class_name)
-                    .catch(error => console.log(error))
-                }
-            });
-            });
-        </script>
-    </head>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+</head>
 
-    <body>
-        <input type='file' />
-        <br><br>
-        <img id="imageData" src="#" alt="your image" height=300>
-        <br><br>
-        <h2 id="classText"></h2>
-    </body>
+<body>
+    <div class="card">
+        <h1>Deteksi Tipe Masker Kamu</h1>
+        <label for="input-file">
+            <input type='file' id="input-file"/>
+            <div class="input-file-container">
+                Pilih Foto
+            </div>
+        </label>
+
+        <img id="img-preview" class="d-none" src="#" alt="your image">
+        <div class="result d-none">
+            Hmm.. menurut saya itu masker KAIN.
+        </div>
+        <div class="error d-none">
+            Memprediksi gambar gagal
+        </div>
+        <button type="button">Deteksi Foto</button>
+        <div class="loading-indicator d-none">
+            <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
 </html>
