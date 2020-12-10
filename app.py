@@ -20,7 +20,7 @@ class_index = {
     1: "MEDIS",
     2: "SCUBA"
 }
-model = pt.load("MaskTypeClassifier_90_87.pth", map_location=pt.device("cpu"))
+model = pt.load("MaskTypeClassifier_88_90.pth", map_location=pt.device("cpu"))
 model.eval()
 
 
