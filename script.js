@@ -41,6 +41,7 @@ function predictImage(data){
     .then(response => {
         loadingIndicator.classList.add('d-none');
         button.classList.remove('d-none');
+        result.classList.remove('d-none');
         result.textContent = `Hmm.. Menurut saya itu masker ${response.class_name}`
     })
     .catch(error => {
